@@ -5,10 +5,10 @@ function App() {
   return (
     <VStack h={"100%"}>
       <Center>
-        
+        <Heading p={"24px"} size={"3xl"} color={"teal.500"}>Sorting Visualizer</Heading>
       </Center>
       <HStack spacing={0} alignItems={"end"} flexGrow={1} maxW={"98%"}>
-
+        
       </HStack>
       <Container h={"14%"} maxW={"80vw"} p={"24px"}>
         <HStack spacing={"10%"} justifyContent={"center"}>
