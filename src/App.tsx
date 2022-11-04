@@ -7,8 +7,10 @@ import BubbleSort from './sortingAlgorithms/bubbleSort';
 import SortBar from './SortBar';
 import NewArrayButton from './NewArrayButton';
 import NumberItemsSlider from './NumberItemsSlider';
+import SpeedSlider from './SpeedSlider';
 
 const INITIAL_ITEMS_NUMBER = 100
+const INITIAL_SORT_SPEED = 100
 
 const App = () => {
   const randomArray = (length: number) => (
@@ -32,6 +34,7 @@ const App = () => {
   }
 
   const [itemsNumber, setItemsNumber] = useState(INITIAL_ITEMS_NUMBER)
+  const [sortSpeed, setSpeed] = useState(INITIAL_SORT_SPEED)
   const [items, setItems] = useState<number[]>(shuffledRangeArray(itemsNumber))
   const [activeSort, setSort] = useState<SortingAlgorithm | null>(null)
   const [colours, setColours] = useState<string[]>([])
@@ -69,6 +72,7 @@ const App = () => {
             <NewArrayButton creationTypes={creationTypes} newArrayFunction={newArray} />
             <NumberItemsSlider default={INITIAL_ITEMS_NUMBER} setter={handleItemsNumberUpdate} isPaused={isPaused} />
           </VStack>
+          <SpeedSlider default={INITIAL_SORT_SPEED} setter={setSpeed} />
           <VStack w={"10%"}>
           </VStack>
         </HStack>
