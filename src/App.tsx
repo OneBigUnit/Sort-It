@@ -5,6 +5,7 @@ import SortingAlgorithm from './sortingAlgorithm';
 import QuickSort from './sortingAlgorithms/quickSort';
 import BubbleSort from './sortingAlgorithms/bubbleSort';
 import SortBar from './SortBar';
+import NewArrayButton from './NewArrayButton';
 
 const INITIAL_ITEMS_NUMBER = 100
 
@@ -33,7 +34,12 @@ const App = () => {
   const [items, setItems] = useState<number[]>(shuffledRangeArray(itemsNumber))
   const [activeSort, setSort] = useState<SortingAlgorithm | null>(null)
   const [colours, setColours] = useState<string[]>([])
+  const [isPaused, setPaused] = useState(true)
 
+  const newArray = (creationType: string) => {
+    setPaused(true)
+    setItems(creationTypes[creationType](itemsNumber))
+  }
   const changedAt = (old: string[], changeIndex: number, newValue: string): string[] => {
     const newArray: string[] = []
     for (let i = 0; i < Math.max(old.length, changeIndex + 1); i++) {
@@ -49,13 +55,13 @@ const App = () => {
       </Center>
       <HStack spacing={0} alignItems={"end"} flexGrow={1} maxW={"98%"}>
         {items.map((it, index) => 
-            <SortBar value={it} colour={colours[it] ?? "gray.800"} setColour={colour => setColours(colours => changedAt(colours, it, colour))} itemsNumber={items.length} greatestItem={Math.max(...items)} />
+          <SortBar value={it} colour={colours[it] ?? "gray.800"} setColour={colour => setColours(colours => changedAt(colours, it, colour))} itemsNumber={items.length} greatestItem={Math.max(...items)} />
         )}
       </HStack>
       <Container h={"14%"} maxW={"80vw"} p={"24px"}>
         <HStack spacing={"10%"} justifyContent={"center"}>
           <VStack w={"20%"}>
-            
+            <NewArrayButton creationTypes={creationTypes} newArrayFunction={newArray} />
           </VStack>
           <VStack w={"10%"}>
           </VStack>
