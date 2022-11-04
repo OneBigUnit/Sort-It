@@ -6,6 +6,7 @@ import QuickSort from './sortingAlgorithms/quickSort';
 import BubbleSort from './sortingAlgorithms/bubbleSort';
 import SortBar from './SortBar';
 import NewArrayButton from './NewArrayButton';
+import NumberItemsSlider from './NumberItemsSlider';
 
 const INITIAL_ITEMS_NUMBER = 100
 
@@ -40,10 +41,14 @@ const App = () => {
     setPaused(true)
     setItems(creationTypes[creationType](itemsNumber))
   }
+  const handleItemsNumberUpdate = (newNumber: number) => {
+    if (!isPaused) return;
+    setItemsNumber(newNumber)
+  }
   const changedAt = (old: string[], changeIndex: number, newValue: string): string[] => {
     const newArray: string[] = []
     for (let i = 0; i < Math.max(old.length, changeIndex + 1); i++) {
-      newArray[i] = i == changeIndex ? newValue : old[i]
+      newArray[i] = i === changeIndex ? newValue : old[i]
     }
     return newArray
   }
@@ -62,6 +67,7 @@ const App = () => {
         <HStack spacing={"10%"} justifyContent={"center"}>
           <VStack w={"20%"}>
             <NewArrayButton creationTypes={creationTypes} newArrayFunction={newArray} />
+            <NumberItemsSlider default={INITIAL_ITEMS_NUMBER} setter={handleItemsNumberUpdate} isPaused={isPaused} />
           </VStack>
           <VStack w={"10%"}>
           </VStack>
