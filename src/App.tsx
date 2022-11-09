@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './App.css';
 import { Center, Container, Heading, HStack, VStack } from '@chakra-ui/react';
 import SortingAlgorithm from './sortingAlgorithm';
@@ -9,6 +9,7 @@ import NewArrayButton from './NewArrayButton';
 import NumberItemsSlider from './NumberItemsSlider';
 import SpeedSlider from './SpeedSlider';
 import PlaybackSwitch from './PlaybackSwitch';
+import ChangeSortMenu from './ChangeSortMenu';
 
 const INITIAL_ITEMS_NUMBER = 100
 const INITIAL_SORT_SPEED = 100
@@ -40,7 +41,15 @@ const App = () => {
   const [activeSort, setSort] = useState<SortingAlgorithm | null>(null)
   const [colours, setColours] = useState<string[]>([])
   const [isPaused, setPaused] = useState(true)
+  const speedRef = useRef(sortSpeed)
 
+  const changeSort = (sortName: string) => {
+    if (sortName === "") {
+      setSort(null)
+    } else {
+      setSort(new sorts[sortName](setItems, sortSpeed))
+    }
+  }
   const startSort = () => (
     setSort(activeSort)
   )
@@ -60,6 +69,31 @@ const App = () => {
     return newArray
   }
 
+  useEffect(() => {
+    if (isPaused || activeSort === null) return;
+    
+    let isCancelled = false;
+    
+    (async () => {
+      for await (const newItems of activeSort.sort(items)) {
+        if (isCancelled) {
+          break;
+        }
+        setItems(newItems)
+        await new Promise(resolve => setTimeout(resolve, 1000 / speedRef.current))
+      }
+      setPaused(true);
+    })()
+    
+    return () => {
+      isCancelled = true
+    }
+  }, [activeSort, isPaused])
+
+  useEffect(() => {
+    speedRef.current = sortSpeed
+  })
+
   return (
     <VStack h={"100%"}>
       <Center>
@@ -78,6 +112,7 @@ const App = () => {
           </VStack>
           <SpeedSlider default={INITIAL_SORT_SPEED} setter={setSpeed} />
           <VStack w={"10%"}>
+            <ChangeSortMenu sorts={sorts} setter={changeSort} />
             <PlaybackSwitch isPaused={isPaused} isPausedSetter={setPaused} startFunction={startSort}/>
           </VStack>
         </HStack>
