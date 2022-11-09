@@ -8,6 +8,7 @@ import SortBar from './SortBar';
 import NewArrayButton from './NewArrayButton';
 import NumberItemsSlider from './NumberItemsSlider';
 import SpeedSlider from './SpeedSlider';
+import PlaybackSwitch from './PlaybackSwitch';
 
 const INITIAL_ITEMS_NUMBER = 100
 const INITIAL_SORT_SPEED = 100
@@ -40,6 +41,9 @@ const App = () => {
   const [colours, setColours] = useState<string[]>([])
   const [isPaused, setPaused] = useState(true)
 
+  const startSort = () => (
+    setSort(activeSort)
+  )
   const newArray = (creationType: string) => {
     setPaused(true)
     setItems(creationTypes[creationType](itemsNumber))
@@ -74,6 +78,7 @@ const App = () => {
           </VStack>
           <SpeedSlider default={INITIAL_SORT_SPEED} setter={setSpeed} />
           <VStack w={"10%"}>
+            <PlaybackSwitch isPaused={isPaused} isPausedSetter={setPaused} startFunction={startSort}/>
           </VStack>
         </HStack>
       </Container>
