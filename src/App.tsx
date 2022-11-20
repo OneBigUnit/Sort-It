@@ -11,6 +11,7 @@ import SpeedSlider from './SpeedSlider';
 import PlaybackSwitch from './PlaybackSwitch';
 import ChangeSortMenu from './ChangeSortMenu';
 
+const TITLE = "Sort-It Visualizer"
 const INITIAL_ITEMS_NUMBER = 100
 const INITIAL_SORT_SPEED = 100
 
@@ -97,7 +98,7 @@ const App = () => {
   return (
     <VStack h={"100%"}>
       <Center>
-        <Heading p={"24px"} size={"3xl"} color={"teal.500"}>Sorting Visualizer</Heading>
+        <Heading p={"24px"} size={"3xl"} color={"teal.500"}>{TITLE}</Heading>
       </Center>
       <HStack spacing={0} alignItems={"end"} flexGrow={1} maxW={"98%"}>
         {items.map((it, index) => 

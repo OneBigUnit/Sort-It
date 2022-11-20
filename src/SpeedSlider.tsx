@@ -31,7 +31,7 @@ const SpeedSlider = (props: {default: number, setter: (value: number) => void}) 
               150/s
             </SliderMark>
             <SliderMark value={200} {...labelStyles}>
-              200/sv--v[]
+              200/s
             </SliderMark>
             <SliderMark value={250} {...labelStyles}>
               250/s
