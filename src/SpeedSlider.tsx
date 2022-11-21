@@ -42,7 +42,7 @@ const SpeedSlider = (props: {default: number, setter: (value: number) => void}) 
             <SliderMark
               value={speed}
               textAlign='center'
-              bg='blue.500'
+              bg='teal.500'
               color='white'
               mt='-10'
               ml='-5'
@@ -51,7 +51,7 @@ const SpeedSlider = (props: {default: number, setter: (value: number) => void}) 
               {speed}/s
             </SliderMark>
             <SliderTrack>
-              <SliderFilledTrack />
+              <SliderFilledTrack bg="teal.500" />
             </SliderTrack>
             <SliderThumb />
           </Slider>

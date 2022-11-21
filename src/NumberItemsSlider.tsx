@@ -17,7 +17,7 @@ const NumberItemsSlider = (props: {default: number, setter: (value: number) => v
     return (
       <Container>
         <Box pt={6} pb={2}>
-          <Slider colorScheme={!props.isPaused ? "blackAlpha" : "blue"} isReadOnly={!props.isPaused} min={5} max={400} defaultValue={props.default} aria-label='slider-ex-6' onChange={(val) => doItemsNumberSetting(val)}>
+          <Slider colorScheme={!props.isPaused ? "blackAlpha" : "teal.500"} isReadOnly={!props.isPaused} min={5} max={400} defaultValue={props.default} aria-label='slider-ex-6' onChange={(val) => doItemsNumberSetting(val)}>
             <SliderMark value={5} {...labelStyles}>
               5 Items
             </SliderMark>
@@ -27,7 +27,7 @@ const NumberItemsSlider = (props: {default: number, setter: (value: number) => v
             <SliderMark
               value={itemsNumber}
               textAlign='center'
-              bg={!props.isPaused ? "gray.400" : "blue.500"}
+              bg={props.isPaused ? "teal.500" : "blackAlpha.600"}
               color='white'
               mt='-10'
               ml='-5'
@@ -36,7 +36,7 @@ const NumberItemsSlider = (props: {default: number, setter: (value: number) => v
               {itemsNumber}
             </SliderMark >
             <SliderTrack>
-              <SliderFilledTrack />
+              <SliderFilledTrack bg={props.isPaused ? "teal.500" : "blackAlpha.500"} />
             </SliderTrack>
             <SliderThumb />
           </Slider>
