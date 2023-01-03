@@ -10,7 +10,7 @@ import NumberItemsSlider from './NumberItemsSlider';
 import SpeedSlider from './SpeedSlider';
 import PlaybackSwitch from './PlaybackSwitch';
 import ChangeSortMenu from './ChangeSortMenu';
-import SignUp from './signup';
+import SignUp from './SignUp';
 
 const TITLE = "Sort-It Visualizer"
 const INITIAL_ITEMS_NUMBER = 100
