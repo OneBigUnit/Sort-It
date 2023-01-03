@@ -10,6 +10,7 @@ import NumberItemsSlider from './NumberItemsSlider';
 import SpeedSlider from './SpeedSlider';
 import PlaybackSwitch from './PlaybackSwitch';
 import ChangeSortMenu from './ChangeSortMenu';
+import SignUp from './signup';
 
 const TITLE = "Sort-It Visualizer"
 const INITIAL_ITEMS_NUMBER = 100
@@ -96,29 +97,30 @@ const App = () => {
   })
 
   return (
-    <VStack h={"100%"}>
-      <Center>
-        <Heading p={"24px"} size={"3xl"} color={"teal.500"}>{TITLE}</Heading>
-      </Center>
-      <HStack spacing={0} alignItems={"end"} flexGrow={1} maxW={"98%"}>
-        {items.map((it, index) => 
-          <SortBar value={it} colour={colours[it] ?? "gray.800"} setColour={colour => setColours(colours => changedAt(colours, it, colour))} itemsNumber={items.length} greatestItem={Math.max(...items)} />
-        )}
-      </HStack>
-      <Container h={"14%"} maxW={"80vw"} p={"24px"}>
-        <HStack spacing={"10%"} justifyContent={"center"}>
-          <VStack w={"20%"}>
-            <NewArrayButton creationTypes={creationTypes} newArrayFunction={newArray} />
-            <NumberItemsSlider default={INITIAL_ITEMS_NUMBER} setter={handleItemsNumberUpdate} isPaused={isPaused} />
-          </VStack>
-          <SpeedSlider default={INITIAL_SORT_SPEED} setter={setSpeed} />
-          <VStack w={"10%"}>
-            <ChangeSortMenu sorts={sorts} setter={changeSort} />
-            <PlaybackSwitch isPaused={isPaused} isPausedSetter={setPaused} startFunction={startSort}/>
-          </VStack>
-        </HStack>
-      </Container>
-    </VStack>
+    // <VStack h={"100%"}>
+    //   <Center>
+    //     <Heading p={"24px"} size={"3xl"} color={"teal.500"}>{TITLE}</Heading>
+    //   </Center>
+    //   <HStack spacing={0} alignItems={"end"} flexGrow={1} maxW={"98%"}>
+    //     {items.map((it, index) => 
+    //       <SortBar value={it} colour={colours[it] ?? "gray.800"} setColour={colour => setColours(colours => changedAt(colours, it, colour))} itemsNumber={items.length} greatestItem={Math.max(...items)} />
+    //     )}
+    //   </HStack>
+    //   <Container h={"14%"} maxW={"80vw"} p={"24px"}>
+    //     <HStack spacing={"10%"} justifyContent={"center"}>
+    //       <VStack w={"20%"}>
+    //         <NewArrayButton creationTypes={creationTypes} newArrayFunction={newArray} />
+    //         <NumberItemsSlider default={INITIAL_ITEMS_NUMBER} setter={handleItemsNumberUpdate} isPaused={isPaused} />
+    //       </VStack>
+    //       <SpeedSlider default={INITIAL_SORT_SPEED} setter={setSpeed} />
+    //       <VStack w={"10%"}>
+    //         <ChangeSortMenu sorts={sorts} setter={changeSort} />
+    //         <PlaybackSwitch isPaused={isPaused} isPausedSetter={setPaused} startFunction={startSort}/>
+    //       </VStack>
+    //     </HStack>
+    //   </Container>
+    // </VStack>
+    <SignUp />
   );
 }
 
